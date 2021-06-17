@@ -148,10 +148,24 @@
                         </MenuItem.Icon>
                     </MenuItem>
                 </Menu>
-                <Menu Grid.Row="3" >
+                <Menu Grid.Row="2" >
                     <MenuItem >
                         <MenuItem.Icon  >
                             <Image   gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Manual.ico"  />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </Menu>
+                <Menu Grid.Row="1" >
+                    <MenuItem >
+                        <MenuItem.Icon  >
+                            <Image   gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Telephone.ico"  />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </Menu>
+                <Menu Grid.Row="3" >
+                    <MenuItem >
+                        <MenuItem.Icon  >
+                            <Image   gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Map.ico"  />
                         </MenuItem.Icon>
                     </MenuItem>
                 </Menu>
@@ -161,14 +175,30 @@
             </Grid>
 
         </Grid>
-        <Button Grid.Column="0" Grid.Row="0" />
-        <Button Grid.Column="1" Grid.Row="0" />
-        <Button Grid.Column="2" Grid.Row="0" />
-        <Button Grid.Column="0" Grid.Row="1" />
-        <Button Grid.Column="2" Grid.Row="1" />
-        <Button Grid.Column="0" Grid.Row="2" />
-        <Button Grid.Column="1" Grid.Row="2" />
-        <Button Grid.Column="2" Grid.Row="2" />
+        <Button Grid.Column="0" Grid.Row="0" Background="#1860FF">
+            <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Education.ico" />
+        </Button>
+        <Button Grid.Column="1" Grid.Row="0" Background="DarkGray" >
+            <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Factory.ico" />
+        </Button>
+        <Button Grid.Column="2" Grid.Row="0" Background="DarkRed" >
+            <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Med.ico" />
+        </Button>
+        <Button Grid.Column="0" Grid.Row="1" Background="Tan">
+            <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Lab.ico" />
+        </Button>
+        <Button Grid.Column="2" Grid.Row="1" Background="DarkGreen">
+            <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Army.ico" />
+        </Button>
+        <Button Grid.Column="0" Grid.Row="2" Background="LightCoral" >
+            <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Totalitarism.ico" />
+        </Button>
+        <Button Grid.Column="1" Grid.Row="2" Background="DarkOrange" >
+            <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Cultura.ico" />
+        </Button>
+        <Button Grid.Column="2" Grid.Row="2"  >
+            <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Rest.ico" />
+        </Button>
 
 
     </Grid>
