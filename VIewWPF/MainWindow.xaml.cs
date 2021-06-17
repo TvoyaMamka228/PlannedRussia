@@ -26,10 +26,31 @@ namespace VIewWPF
         public MainWindow()
         {
             InitializeComponent();
-            ThemeManager.Current.ChangeTheme(this, "Dark.Blue");
+            ThemeManager.Current.ChangeTheme(this, MainColor+Coloring);
 
         }
+        string MainColor = "Dark.";
+        string Coloring = "Blue";
+        private void Palette_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var s = Palette.SelectedValue;
+            var s2 = MahApps.Metro.Controls.ColorHelper.GetColorName((Color?)s, null);
+            string[] Color = s2.Split(' ');
+            string Coloring = Color[0];
+            ThemeManager.Current.ChangeTheme(this, MainColor+Coloring);
+        }
 
-
+        private void Palette2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var s = Palette2.SelectedValue;
+            var s2 = MahApps.Metro.Controls.ColorHelper.GetColorName((Color?)s, null);
+            string[] Color = s2.Split(' ');
+            if (Color[0] == "Black")
+            {
+                MainColor = "Dark.";
+            }
+            else MainColor = "Light.";
+            ThemeManager.Current.ChangeTheme(this, MainColor+Coloring);
+        }
     }
 }
