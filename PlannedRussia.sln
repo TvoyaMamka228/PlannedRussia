@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VIewWPF", "VIewWPF\VIewWPF.csproj", "{623A8403-0579-4BF7-82D0-EFC99E294E2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlannedRussiaLC", "PlannedRussiaLC\PlannedRussiaLC.csproj", "{C0BB2833-D259-437A-A42F-232F25AF8F0B}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{623A8403-0579-4BF7-82D0-EFC99E294E2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{623A8403-0579-4BF7-82D0-EFC99E294E2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{623A8403-0579-4BF7-82D0-EFC99E294E2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{623A8403-0579-4BF7-82D0-EFC99E294E2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0BB2833-D259-437A-A42F-232F25AF8F0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0BB2833-D259-437A-A42F-232F25AF8F0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0BB2833-D259-437A-A42F-232F25AF8F0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0BB2833-D259-437A-A42F-232F25AF8F0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
