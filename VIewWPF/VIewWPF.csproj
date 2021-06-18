@@ -224,11 +224,5 @@
   <ItemGroup>
     <None Include="Images\Eye.gif" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PlannedRussiaLC\PlannedRussiaLC.csproj">
-      <Project>{c0bb2833-d259-437a-a42f-232f25af8f0b}</Project>
-      <Name>PlannedRussiaLC</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -125,7 +125,7 @@
                 <Menu Grid.Row="3" >
                     <MenuItem >
                         <MenuItem.Icon >
-                            <mah:Badged Badge="1488" BadgeBackground="DarkRed" >
+                            <mah:Badged Badge="1337" BadgeBackground="DarkRed" >
                                 <Image  gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Task.ico" />
                             </mah:Badged>
                         </MenuItem.Icon>
@@ -175,7 +175,7 @@
             </Grid>
 
         </Grid>
-        <Button Grid.Column="0" Grid.Row="0" Background="#1860FF" Name="Education" Click="Education_Click" >
+        <Button Grid.Column="0" Grid.Row="0" Background="#1860FF" >
             <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Education.ico" />
         </Button>
         <Button Grid.Column="1" Grid.Row="0" Background="DarkGray" >

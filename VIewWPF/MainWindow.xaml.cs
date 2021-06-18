@@ -30,10 +30,6 @@ namespace VIewWPF
         {
             InitializeComponent();
             ThemeManager.Current.ChangeTheme(this, MainColor+Coloring);
-            var Culture = CultureInfo.CreateSpecificCulture("Rus");
-            var ResM = new ResourceManager("ViewWPF.Language.Rus", typeof(MainWindow).Assembly);
-            MessageBox.Show(ResM.GetString("NullExeption"));
-            People
         }
         string MainColor = "Dark.";
         string Coloring = "Blue";
