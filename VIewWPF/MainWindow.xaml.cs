@@ -2,6 +2,7 @@
 using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfAnimatedGif;
+using System.Resources;
+
 
 namespace VIewWPF
 {
@@ -27,7 +30,10 @@ namespace VIewWPF
         {
             InitializeComponent();
             ThemeManager.Current.ChangeTheme(this, MainColor+Coloring);
-
+            var Culture = CultureInfo.CreateSpecificCulture("Rus");
+            var ResM = new ResourceManager("ViewWPF.Language.Rus", typeof(MainWindow).Assembly);
+            MessageBox.Show(ResM.GetString("NullExeption"));
+            People
         }
         string MainColor = "Dark.";
         string Coloring = "Blue";
@@ -51,6 +57,12 @@ namespace VIewWPF
             }
             else MainColor = "Light.";
             ThemeManager.Current.ChangeTheme(this, MainColor+Coloring);
+        }
+
+        public void Education_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.Education edication = new Windows.Education();
+            edication.Show();
         }
     }
 }

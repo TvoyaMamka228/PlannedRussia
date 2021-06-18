@@ -175,7 +175,7 @@
             </Grid>
 
         </Grid>
-        <Button Grid.Column="0" Grid.Row="0" Background="#1860FF">
+        <Button Grid.Column="0" Grid.Row="0" Background="#1860FF" Name="Education" Click="Education_Click" >
             <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Education.ico" />
         </Button>
         <Button Grid.Column="1" Grid.Row="0" Background="DarkGray" >
