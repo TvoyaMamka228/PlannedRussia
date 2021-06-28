@@ -4,13 +4,13 @@
                       xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
                       xmlns:gif="http://wpfanimatedgif.codeplex.com"
                       xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-                      xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" 
                       Title="MainWindow"
                       Height="800"
                       Width="1600"
                       MinHeight="450"
                       MinWidth="450"
-                      WindowStartupLocation="CenterScreen">
+                      WindowStartupLocation="CenterScreen" Closed="MetroWindow_Closed">
     <Window.Resources>
         <Style x:Key="MyButtonStyle" TargetType="Button">
             <Setter Property="Template">
@@ -25,181 +25,217 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Column="1" Grid.Row="1" Panel.ZIndex="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.2*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="0.2*" />
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" Width="500" Height="270" VerticalAlignment="Center" HorizontalAlignment="Center" >
-                <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Eye.gif"  />
-            </Button>
-
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions >
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+    <TabControl>
+        <TabItem  Header="A" Name ="Menu"  >
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Menu >
-                    <MenuItem >
-                        <MenuItem.Icon >
-                            <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\ChangeLang.ico"   />
-                        </MenuItem.Icon>
-                        <MenuItem Height="60" Width="70"  >
-                            <MenuItem.Icon>
-                                <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Rus.ico" />
-                            </MenuItem.Icon>
-                        </MenuItem>
-                        <MenuItem Height="60" Width="70" >
-                            <MenuItem.Icon>
-                                <Image Height="60" Width="70"
+                <Grid Grid.Column="1" Grid.Row="1" Panel.ZIndex="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.2*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0.2*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1" Width="500" HorizontalAlignment="Center" >
+                        <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Eye.gif"  />
+                    </Grid>
+
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions >
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Menu >
+                            <MenuItem >
+                                <MenuItem.Icon >
+                                    <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\ChangeLang.ico"   />
+                                </MenuItem.Icon>
+                                <MenuItem Height="60" Width="70"  >
+                                    <MenuItem.Icon>
+                                        <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Rus.ico" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <MenuItem Height="60" Width="70" >
+                                    <MenuItem.Icon>
+                                        <Image Height="60" Width="70"
                                     gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Eng.ico"  />
-                            </MenuItem.Icon>
-                        </MenuItem>
-                    </MenuItem>
-                </Menu>
-                <Menu Grid.Row="1">
-                    <MenuItem>
-                        <MenuItem.Icon >
-                            <Image  gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Theme.ico"  />
-                        </MenuItem.Icon>
-                        <DockPanel  >
-                            <Button DockPanel.Dock="Bottom" Style="{StaticResource MyButtonStyle}" >
-                                <mah:ColorPalette Name="Palette2" Header="Базовый цвет" SelectionChanged="Palette2_SelectionChanged" >
-                                    <Color>White</Color>
-                                    <Color>Black</Color>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </MenuItem>
+                        </Menu>
+                        <Menu Grid.Row="1">
+                            <MenuItem>
+                                <MenuItem.Icon >
+                                    <Image  gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Theme.ico"  />
+                                </MenuItem.Icon>
+                                <DockPanel  >
+                                    <Button DockPanel.Dock="Bottom" Style="{StaticResource MyButtonStyle}" >
+                                        <mah:ColorPalette Name="Palette2" Header="Базовый цвет" SelectionChanged="Palette2_SelectionChanged" >
+                                            <Color>White</Color>
+                                            <Color>Black</Color>
 
-                                </mah:ColorPalette>
-                            </Button>
-                            <Button  Style="{StaticResource MyButtonStyle}"  >
-                                <mah:ColorPalette Name="Palette" Header="Раскраска" SelectionChanged="Palette_SelectionChanged">
-                                    <Color>Red</Color>
-                                    <Color>Green</Color>
-                                    <Color>Blue</Color>
-                                    <Color>Purple</Color>
-                                    <Color>Orange</Color>
-                                    <Color>Lime</Color>
-                                    <Color>Teal</Color>
-                                    <Color>Indigo</Color>
-                                    <Color>Pink</Color>
-                                    <Color>Crimson</Color>
-                                    <Color>Yellow</Color>
-                                    <Color>Brown</Color>
-                                    <Color>Olive</Color>
-                                    <Color>Sienna</Color>
-                                </mah:ColorPalette>
-                            </Button>
-                        </DockPanel>
-
-
+                                        </mah:ColorPalette>
+                                    </Button>
+                                    <Button  Style="{StaticResource MyButtonStyle}"  >
+                                        <mah:ColorPalette Name="Palette" Header="Раскраска" SelectionChanged="Palette_SelectionChanged">
+                                            <Color>Red</Color>
+                                            <Color>Green</Color>
+                                            <Color>Blue</Color>
+                                            <Color>Purple</Color>
+                                            <Color>Orange</Color>
+                                            <Color>Lime</Color>
+                                            <Color>Teal</Color>
+                                            <Color>Indigo</Color>
+                                            <Color>Pink</Color>
+                                            <Color>Crimson</Color>
+                                            <Color>Yellow</Color>
+                                            <Color>Brown</Color>
+                                            <Color>Olive</Color>
+                                            <Color>Sienna</Color>
+                                        </mah:ColorPalette>
+                                    </Button>
+                                </DockPanel>
 
 
-                    </MenuItem>
 
 
-                </Menu>
-                <Menu Grid.Row="2" >
-                    <MenuItem >
-                        <MenuItem.Icon >
-                            <mah:Badged Badge="228" >
-                                <Image  gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Chat.ico" />
-                            </mah:Badged>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                </Menu>
-                <Menu Grid.Row="3" >
-                    <MenuItem >
-                        <MenuItem.Icon >
-                            <mah:Badged Badge="1337" BadgeBackground="DarkRed" >
-                                <Image  gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Task.ico" />
-                            </mah:Badged>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                </Menu>
+                            </MenuItem>
+
+
+                        </Menu>
+                        <Menu Grid.Row="2" >
+                            <MenuItem >
+                                <MenuItem.Icon >
+                                    <mah:Badged Badge="228" >
+                                        <Image  gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Chat.ico" />
+                                    </mah:Badged>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </Menu>
+                        <Menu Grid.Row="3" >
+                            <MenuItem >
+                                <MenuItem.Icon >
+                                    <mah:Badged Badge="1337" BadgeBackground="DarkRed" >
+                                        <Image  gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Task.ico" />
+                                    </mah:Badged>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </Menu>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions >
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Menu Grid.Row="0" >
+                            <MenuItem >
+                                <MenuItem.Icon  >
+                                    <mah:Badged  Badge="3 мая" BadgeBackground="Black"  >
+                                        <Image   gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Calendary.ico"  />
+                                    </mah:Badged>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </Menu>
+                        <Menu Grid.Row="2" >
+                            <MenuItem >
+                                <MenuItem.Icon  >
+                                    <Image   gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Manual.ico"  />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </Menu>
+                        <Menu Grid.Row="1" >
+                            <MenuItem >
+                                <MenuItem.Icon  >
+                                    <Image   gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Telephone.ico"  />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </Menu>
+                        <Menu Grid.Row="3" >
+                            <MenuItem >
+                                <MenuItem.Icon  >
+                                    <Image   gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Map.ico"  />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </Menu>
+
+
+
+                    </Grid>
+
+                </Grid>
+                <Button Grid.Column="0" Grid.Row="0" Background="#1860FF" >
+                    <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Education.ico" />
+                </Button>
+                <Button Grid.Column="1" Grid.Row="0" Background="DarkGray" >
+                    <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Factory.ico" />
+                </Button>
+                <Button Grid.Column="2" Grid.Row="0" Background="DarkRed" >
+                    <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Med.ico" />
+                </Button>
+                <Button Grid.Column="0" Grid.Row="1" Background="Tan">
+                    <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Lab.ico" />
+                </Button>
+                <Button Grid.Column="2" Grid.Row="1" Background="DarkGreen">
+                    <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Army.ico" />
+                </Button>
+                <Button Grid.Column="0" Grid.Row="2" Background="LightCoral" >
+                    <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Totalitarism.ico" />
+                </Button>
+                <Button Grid.Column="1" Grid.Row="2" Background="DarkOrange" >
+                    <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Cultura.ico" />
+                </Button>
+                <Button Grid.Column="2" Grid.Row="2"  >
+                    <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Rest.ico" />
+                </Button>
             </Grid>
-            <Grid Grid.Column="2">
-                <Grid.RowDefinitions >
-                    <RowDefinition Height="*"/>
+        </TabItem>
+        <TabItem Header="Революция">
+            <Grid  Margin="10" >
+                <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Menu Grid.Row="0" >
-                    <MenuItem >
-                        <MenuItem.Icon  >
-                            <mah:Badged  Badge="3 мая" BadgeBackground="Black"  >
-                                <Image   gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Calendary.ico"  />
-                            </mah:Badged>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                </Menu>
-                <Menu Grid.Row="2" >
-                    <MenuItem >
-                        <MenuItem.Icon  >
-                            <Image   gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Manual.ico"  />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                </Menu>
-                <Menu Grid.Row="1" >
-                    <MenuItem >
-                        <MenuItem.Icon  >
-                            <Image   gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Telephone.ico"  />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                </Menu>
-                <Menu Grid.Row="3" >
-                    <MenuItem >
-                        <MenuItem.Icon  >
-                            <Image   gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Map.ico"  />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                </Menu>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.07*" />
+                    </Grid.ColumnDefinitions>
+                    <DataGrid  HorizontalScrollBarVisibility="Disabled" x:Name="GridPeople" Grid.Column="0" FontSize="16" FontWeight="Bold" Width="Auto" Height="Auto" AutoGenerateColumns="False">
+                        <DataGrid.Columns >
+                            <DataGridTextColumn Binding="{Binding Path=id}" Width="0.1*" MinWidth="100" Header="id" />
+                            <DataGridTextColumn Binding="{Binding Path=FerstName}" Width="*" MinWidth="100" Header="Имя" />
+                            <DataGridTextColumn Binding="{Binding Path=LastName}" Width="*" MinWidth="110" Header="Фамилия" />
+                            <DataGridTextColumn Binding="{Binding Path=MiddleName}" Width="*" MinWidth="100" Header="Отчество"  />
+                            <DataGridTextColumn Binding="{Binding Path=Birthday}" Width="*" MinWidth="100" Header="День рождения" />
+                            <DataGridTextColumn Binding="{Binding Path=Age}" Width="*" MinWidth="100"  Header="Возраст" IsReadOnly="True" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.25*"/>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="AllPeoples" Grid.Row="0" TextWrapping="Wrap" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" />
+                    </Grid>
 
-
+                </Grid>
 
             </Grid>
-
-        </Grid>
-        <Button Grid.Column="0" Grid.Row="0" Background="#1860FF" >
-            <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Education.ico" />
-        </Button>
-        <Button Grid.Column="1" Grid.Row="0" Background="DarkGray" >
-            <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Factory.ico" />
-        </Button>
-        <Button Grid.Column="2" Grid.Row="0" Background="DarkRed" >
-            <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Med.ico" />
-        </Button>
-        <Button Grid.Column="0" Grid.Row="1" Background="Tan">
-            <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Lab.ico" />
-        </Button>
-        <Button Grid.Column="2" Grid.Row="1" Background="DarkGreen">
-            <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Army.ico" />
-        </Button>
-        <Button Grid.Column="0" Grid.Row="2" Background="LightCoral" >
-            <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Totalitarism.ico" />
-        </Button>
-        <Button Grid.Column="1" Grid.Row="2" Background="DarkOrange" >
-            <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Cultura.ico" />
-        </Button>
-        <Button Grid.Column="2" Grid.Row="2"  >
-            <Image gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Rest.ico" />
-        </Button>
-
-
-    </Grid>
+        </TabItem>
+    </TabControl>
 </Controls:MetroWindow>

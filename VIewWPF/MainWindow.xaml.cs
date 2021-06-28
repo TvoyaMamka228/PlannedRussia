@@ -1,22 +1,14 @@
 ﻿using ControlzEx.Theming;
 using MahApps.Metro.Controls;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
+using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using WpfAnimatedGif;
-using System.Resources;
+using VIewWPF.Models;
+
+
 
 
 namespace VIewWPF
@@ -26,11 +18,25 @@ namespace VIewWPF
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        static private BindingList<People> Peoples = new BindingList<People>();
         public MainWindow()
         {
             InitializeComponent();
-            ThemeManager.Current.ChangeTheme(this, MainColor+Coloring);
+            ThemeManager.Current.ChangeTheme(this, MainColor + Coloring);
+            using (Context db = new Context())
+            {
+                foreach (var i in db.Peoples)
+                {
+                    Peoples.Add(i);
+                }
+                //Peoples = new BindingList<People>(db.Peoples.ToList()) { };
+                People.AllPeoples = Peoples.Count;
+                AllPeoples.Text = "Всего людей: " + Convert.ToString(People.AllPeoples);
+                GridPeople.ItemsSource = Peoples;
+                Peoples.ListChanged += Peoples_ListChanged;
+            }
         }
+
         string MainColor = "Dark.";
         string Coloring = "Blue";
         private void Palette_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -39,7 +45,7 @@ namespace VIewWPF
             var s2 = MahApps.Metro.Controls.ColorHelper.GetColorName((Color?)s, null);
             string[] Color = s2.Split(' ');
             string Coloring = Color[0];
-            ThemeManager.Current.ChangeTheme(this, MainColor+Coloring);
+            ThemeManager.Current.ChangeTheme(this, MainColor + Coloring);
         }
 
         private void Palette2_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -52,13 +58,38 @@ namespace VIewWPF
                 MainColor = "Dark.";
             }
             else MainColor = "Light.";
-            ThemeManager.Current.ChangeTheme(this, MainColor+Coloring);
+            ThemeManager.Current.ChangeTheme(this, MainColor + Coloring);
         }
 
-        public void Education_Click(object sender, RoutedEventArgs e)
+        private void Peoples_ListChanged(object sender, ListChangedEventArgs e)
         {
-            Windows.Education edication = new Windows.Education();
-            edication.Show();
+            if(e.ListChangedType ==  ListChangedType.ItemAdded)
+            {
+
+                People.AllPeoples = Peoples.Count;
+                AllPeoples.Text = "Всего людей: " + Convert.ToString(People.AllPeoples);
+            }
+
+            if (e.ListChangedType == ListChangedType.ItemChanged)
+            {
+                
+            }
+
+            if(e.ListChangedType == ListChangedType.ItemDeleted)
+            {
+
+            }
+        }
+
+        private void MetroWindow_Closed(object sender, EventArgs e)
+        {
+            using (Context db = new Context())
+            {
+                foreach(var i in Peoples)
+                {
+                }
+            }
         }
     }
 }
+
