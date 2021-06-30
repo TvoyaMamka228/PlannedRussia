@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 using VIewWPF.Models;
 
@@ -18,23 +19,15 @@ namespace VIewWPF
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        static private BindingList<People> Peoples = new BindingList<People>();
+        Context db = new Context();
         public MainWindow()
         {
             InitializeComponent();
             ThemeManager.Current.ChangeTheme(this, MainColor + Coloring);
-            using (Context db = new Context())
-            {
-                foreach (var i in db.Peoples)
-                {
-                    Peoples.Add(i);
-                }
-                //Peoples = new BindingList<People>(db.Peoples.ToList()) { };
-                People.AllPeoples = Peoples.Count;
-                AllPeoples.Text = "Всего людей: " + Convert.ToString(People.AllPeoples);
-                GridPeople.ItemsSource = Peoples;
-                Peoples.ListChanged += Peoples_ListChanged;
-            }
+
+            db.Peoples.Load();
+            GridPeople.ItemsSource = db.Peoples.Local.ToBindingList();
+            AllPeoples.Text = "Всего людей: " + Convert.ToString(db.Peoples.Count());
         }
 
         string MainColor = "Dark.";
@@ -61,34 +54,37 @@ namespace VIewWPF
             ThemeManager.Current.ChangeTheme(this, MainColor + Coloring);
         }
 
-        private void Peoples_ListChanged(object sender, ListChangedEventArgs e)
+        private void SaveButton_Click(object sender, EventArgs e)
         {
-            if(e.ListChangedType ==  ListChangedType.ItemAdded)
-            {
-
-                People.AllPeoples = Peoples.Count;
-                AllPeoples.Text = "Всего людей: " + Convert.ToString(People.AllPeoples);
-            }
-
-            if (e.ListChangedType == ListChangedType.ItemChanged)
-            {
-                
-            }
-
-            if(e.ListChangedType == ListChangedType.ItemDeleted)
-            {
-
-            }
+            db.SaveChanges();
+            GridPeople.ItemsSource = null;
+            GridPeople.ItemsSource = db.Peoples.Local.ToBindingList();
         }
 
-        private void MetroWindow_Closed(object sender, EventArgs e)
+        private void MetroWindow_Closing(object sender, EventArgs e)
         {
-            using (Context db = new Context())
+            db.Dispose();
+        }
+
+        private void Delete_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (GridPeople.SelectedItems.Count > 0)
             {
-                foreach(var i in Peoples)
+                for (int i = 0; i < GridPeople.SelectedItems.Count; i++)
                 {
+                    People people = GridPeople.SelectedItems[i] as People;
+                    if (people != null)
+                    {
+                        db.Peoples.Remove(people);
+                    }
                 }
             }
+            db.SaveChanges();
+        }
+
+        private void GridPeople_AddingNewItem(object sender, AddingNewItemEventArgs e)
+        {
+
         }
     }
 }

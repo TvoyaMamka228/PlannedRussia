@@ -7,55 +7,39 @@ using System.Threading.Tasks;
 
 namespace VIewWPF.Models
 {
-    public class People: INotifyPropertyChanged
+    public class People : INotifyPropertyChanged
     {
-        public static int AllPeoples { get; set; }
-        public People(string ferstName, string middleName, string lastName, DateTime birthday)
-        {
-            FerstName = ferstName ?? throw new ArgumentNullException(nameof(ferstName));
-            MiddleName = middleName ?? throw new ArgumentNullException(nameof(middleName));
-            LastName = lastName ?? throw new ArgumentNullException(nameof(lastName));
-            Birthday = birthday;
-        }
-        public People() { }
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        private string _FerstName;
-        private string _LastName;
-        private string _MiddleName;
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private string _birthday="22.8.1488";
+        public People() { OnPropertyChanged("id"); }
         public int id { get; set; }
-        public string FerstName
+        public string FerstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+        public string Birthday
         {
-            get { return _FerstName; }
-            set { _FerstName = value; OnPropertyChange("FerstName"); }
+            get { return _birthday; }
+            set { _birthday = value; OnPropertyChanged("Age"); }
         }
-        public string MiddleName
-        {
-            get { return _MiddleName; }
-            set { _MiddleName = value; OnPropertyChange("MiddleName"); }
-        }
-        public string LastName
-        {
-            get { return _LastName; }
-            set { _LastName = value; OnPropertyChange("LastName"); }
-        }
-        public DateTime Birthday { get; set; }
-        public int Age 
-        {
 
+        public int Age
+        {
             get
             {
+
                 DateTime now = DateTime.Today;
-                int age = now.Year - Birthday.Year;
-                if (Birthday > now.AddYears(-age)) age--;
+                int age = now.Year - DateTime.Parse(Birthday).Year;
+                if (DateTime.Parse(Birthday) > now.AddYears(-age)) age--;
                 return age;
             }
-        }
+        } 
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChange(string propertyName="")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 
 }
