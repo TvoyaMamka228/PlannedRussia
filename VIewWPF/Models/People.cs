@@ -10,18 +10,33 @@ namespace VIewWPF.Models
     public class People : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(string propertyName)
+        protected virtual void OnPropertyChanged(string propertyName)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        public People() { }
+        public int id { get; set; } = 0;
         private string _birthday="22.8.1488";
-        public People() { OnPropertyChanged("id"); }
-        public int id { get; set; }
-        public string FerstName { get; set; }
-        public string MiddleName { get; set; }
-        public string LastName { get; set; }
+        private string _FerstName;
+        private string _MiddleName;
+        private string _LastName;
+
+        public string FerstName
+        {
+            get { return _FerstName; }
+            set { _FerstName = value; OnPropertyChanged("FerstName"); }
+        }
+        public string MiddleName
+        {
+            get { return _MiddleName; }
+            set { _MiddleName = value; OnPropertyChanged("MiddleName"); }
+        }
+        public string LastName
+        {
+            get { return _LastName; }
+            set { _LastName = value; OnPropertyChanged("LastName"); }
+        }
+
         public string Birthday
         {
             get { return _birthday; }
@@ -32,14 +47,12 @@ namespace VIewWPF.Models
         {
             get
             {
-
                 DateTime now = DateTime.Today;
                 int age = now.Year - DateTime.Parse(Birthday).Year;
                 if (DateTime.Parse(Birthday) > now.AddYears(-age)) age--;
                 return age;
             }
-        } 
-
+        }
     }
 
 }

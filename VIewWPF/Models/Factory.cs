@@ -8,12 +8,8 @@ namespace VIewWPF.Models
 {
     public class Factory
     {
-        public Factory(int machines, int peoples)
-        {
-            Machines = machines;
-            Peoples = peoples;
-        }
-        public int Id { get; set; }
+        public Factory() { }
+        public int id { get; set; }
         public int Machines { get; set; }
         public int Peoples { get; set; }
     }

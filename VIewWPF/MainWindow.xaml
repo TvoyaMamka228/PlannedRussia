@@ -11,7 +11,7 @@
                       Width="1600"
                       MinHeight="450"
                       MinWidth="450"
-                      WindowStartupLocation="CenterScreen" Closed="MetroWindow_Closing" Closing="MetroWindow_Closing">
+                      WindowStartupLocation="CenterScreen"  Closing="MetroWindow_Closing">
     <Window.Resources>
         <Style x:Key="MyButtonStyle" TargetType="Button">
             <Setter Property="Template">
@@ -209,17 +209,16 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="0.07*" />
                     </Grid.ColumnDefinitions>
-                    <DataGrid HorizontalScrollBarVisibility="Disabled" x:Name="GridPeople" Grid.Column="0" FontSize="16" FontWeight="Bold" Width="Auto" Height="Auto" AutoGenerateColumns="False"  AddingNewItem="GridPeople_AddingNewItem">
+                    <DataGrid HorizontalScrollBarVisibility="Disabled" x:Name="GridPeople" Grid.Column="0" FontSize="16" FontWeight="Bold" Width="Auto" Height="Auto" AutoGenerateColumns="False"  CellEditEnding="GridPeople_CellEditEnding">
                         <DataGrid.Columns >
-                            <DataGridTextColumn Binding="{Binding Path=id}" Width="0.1*" MinWidth="100" Header="id" />
-                            <DataGridTextColumn Binding="{Binding Path=FerstName}" Width="*" MinWidth="100" Header="Имя" />
+                            <DataGridTextColumn Binding="{Binding Path=id}" Width="0.1*" MinWidth="100" Header="id"/>
+                            <DataGridTextColumn Binding="{Binding Path=FerstName }" Width="*" MinWidth="100" Header="Имя" />
                             <DataGridTextColumn Binding="{Binding Path=LastName}" Width="*" MinWidth="110" Header="Фамилия" />
                             <DataGridTextColumn Binding="{Binding Path=MiddleName}" Width="*" MinWidth="100" Header="Отчество"  />
                             <DataGridTextColumn Binding="{Binding Path=Birthday, StringFormat={}{0:dd/MM/yyyy}}" Width="*" MinWidth="100" Header="День рождения" />
@@ -233,12 +232,26 @@
                         </Grid.RowDefinitions>
                         <TextBlock x:Name="AllPeoples" Grid.Row="0" TextWrapping="Wrap" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" />
                         <UniformGrid Rows="2" Grid.Row="1">
-                            <Button x:Name="SaveButton" Content="Сохранить" Click="SaveButton_Click" />
+                            <Button x:Name="SaveButton" Content="Сохранить" Click="SaveButton_Click" >
+                            </Button>
                             <Button x:Name="DeleteButton" Content="Удалить" Click="Delete_Click" />
                         </UniformGrid>
                     </Grid>
 
                 </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Grid.Column="0" HorizontalScrollBarVisibility="Disabled" x:Name="GridFactory" FontSize="16" FontWeight="Bold" Width="Auto" Height="Auto" AutoGenerateColumns="False">
+                        <DataGridTextColumn Binding="{Binding Path=id}" Width="0.1*" MinWidth="100" Header="id"/>
+                        <DataGridTextColumn Binding="{Binding Path=Machines}" Width="*" MinWidth="100" Header="Машины"/>
+                        <DataGridTextColumn Binding="{Binding Path=Peoples}" Width="*" MinWidth="100" Header="Работники"/>
+                    </DataGrid>
+                </Grid>
+                
 
             </Grid>
             
