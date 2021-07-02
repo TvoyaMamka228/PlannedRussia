@@ -192,7 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Context.cs" />
-    <Compile Include="Models\Factory.cs" />
+    <Compile Include="Models\Factories.cs" />
     <Compile Include="Models\People.cs" />
     <Compile Include="Models\Revolution.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

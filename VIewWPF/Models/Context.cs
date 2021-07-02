@@ -15,7 +15,8 @@ namespace VIewWPF
         public Context() : base("DbRevolution") { }
 
         public DbSet<People> Peoples { get; set; }
-        public DbSet<Factory> Factories { get; set; }
+        public DbSet<Factories> Factories { get; set; }
+        public DbSet<Revolutions> Revolutions { get; set; }
 
     }
 }

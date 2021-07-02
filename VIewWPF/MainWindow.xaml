@@ -217,11 +217,11 @@
                     </Grid.ColumnDefinitions>
                     <DataGrid HorizontalScrollBarVisibility="Disabled" x:Name="GridPeople" Grid.Column="0" FontSize="16" FontWeight="Bold" Width="Auto" Height="Auto" AutoGenerateColumns="False"  CellEditEnding="GridPeople_CellEditEnding">
                         <DataGrid.Columns >
-                            <DataGridTextColumn Binding="{Binding Path=id}" Width="0.1*" MinWidth="100" Header="id"/>
+                            <DataGridTextColumn Binding="{Binding Path=id}" IsReadOnly="True" Width="0.1*" MinWidth="50" Header="id"/>
                             <DataGridTextColumn Binding="{Binding Path=FerstName }" Width="*" MinWidth="100" Header="Имя" />
                             <DataGridTextColumn Binding="{Binding Path=LastName}" Width="*" MinWidth="110" Header="Фамилия" />
-                            <DataGridTextColumn Binding="{Binding Path=MiddleName}" Width="*" MinWidth="100" Header="Отчество"  />
-                            <DataGridTextColumn Binding="{Binding Path=Birthday, StringFormat={}{0:dd/MM/yyyy}}" Width="*" MinWidth="100" Header="День рождения" />
+                            <DataGridTextColumn Binding="{Binding Path=MiddleName}" Width="*" MinWidth="120" Header="Отчество"  />
+                            <DataGridTextColumn Binding="{Binding Path=Birthday, StringFormat={}{0:dd/MM/yyyy}}" Width="*" MinWidth="180" Header="День рождения" />
                             <DataGridTextColumn Binding="{Binding Path=Age}" Width="*" MinWidth="100"  Header="Возраст" IsReadOnly="True" />
                         </DataGrid.Columns>
                     </DataGrid>
@@ -232,24 +232,68 @@
                         </Grid.RowDefinitions>
                         <TextBlock x:Name="AllPeoples" Grid.Row="0" TextWrapping="Wrap" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" />
                         <UniformGrid Rows="2" Grid.Row="1">
-                            <Button x:Name="SaveButton" Content="Сохранить" Click="SaveButton_Click" >
-                            </Button>
-                            <Button x:Name="DeleteButton" Content="Удалить" Click="Delete_Click" />
+                            <Button x:Name="SaveButton" Content="Сохранить" Click="SaveButton_Click" />
+                            <Button  Content="Удалить" Click="Delete_Click" />
                         </UniformGrid>
                     </Grid>
-
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.7*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <DataGrid Grid.Column="0" HorizontalScrollBarVisibility="Disabled" x:Name="GridFactory" FontSize="16" FontWeight="Bold" Width="Auto" Height="Auto" AutoGenerateColumns="False">
-                        <DataGridTextColumn Binding="{Binding Path=id}" Width="0.1*" MinWidth="100" Header="id"/>
-                        <DataGridTextColumn Binding="{Binding Path=Machines}" Width="*" MinWidth="100" Header="Машины"/>
-                        <DataGridTextColumn Binding="{Binding Path=Peoples}" Width="*" MinWidth="100" Header="Работники"/>
+                    <DataGrid Grid.Column="0" HorizontalScrollBarVisibility="Disabled" x:Name="GridFactory" FontSize="16" FontWeight="Bold" Width="Auto" Height="Auto" AutoGenerateColumns="False" CellEditEnding="GridPeople_CellEditEnding">
+                        <DataGrid.Columns >
+                            <DataGridTextColumn  Binding="{Binding Path=id}" IsReadOnly="True" Width="0.1*" MinWidth="50" Header="id"/>
+                            <DataGridTextColumn Binding="{Binding Path=Machines}" Width="*" MinWidth="100" Header="Машины"/>
+                            <DataGridTextColumn Binding="{Binding Path=Peoples}" Width="*" MinWidth="150" Header="Работники"/>
+                        </DataGrid.Columns >
                     </DataGrid>
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <DataGrid Grid.Row="0" HorizontalScrollBarVisibility="Disabled" x:Name="GridRevolution" FontSize="16" FontWeight="Bold" Width="Auto" Height="Auto" AutoGenerateColumns="False" CellEditEnding="GridPeople_CellEditEnding">
+                            <DataGrid.Columns  >
+                                <DataGridTextColumn  Binding="{Binding Path=RevolutionPeopls}" IsReadOnly="True" Width="*" MinWidth="150" Header="Недовольные"/>
+                                <DataGridTextColumn Binding="{Binding Path=Weapons}" Width="*" IsReadOnly="True"  MinWidth="230" Header="Огнестрельное оружие"/>
+                                <DataGridTextColumn Binding="{Binding Path=Bomb}" Width="*" IsReadOnly="True"  MinWidth="100" Header="Взрывчатки"/>
+                            </DataGrid.Columns >
+                        </DataGrid>
+                        <TextBlock x:Name="Military" Grid.Row="1" FontSize="25" TextWrapping="Wrap" Foreground="Green"/>
+                        <TextBlock x:Name="Attack" Grid.Row="2" FontSize="25" TextWrapping="Wrap" Foreground="Red"/>
+                        <TextBlock x:Name="Dead" Grid.Row="3" FontSize="25" TextWrapping="Wrap" Foreground="Gray"/>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.5*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="0" Click="Revolution_Click">
+                            <Image Width="400" gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Revolution.PNG" />
+                        </Button>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Click="Military_Click">
+                                <Image  gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Guard.PNG" />
+                            </Button>
+                            <UniformGrid Rows="2" Grid.Column="1">
+                                <Button Click="Attack_Click">
+                                    <Image  gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Kill.PNG" />
+                                </Button>
+                                <Button Click = "Dead_Click">
+                                    <Image  gif:ImageBehavior.AnimatedSource="C:\programmirovanie\PlannedRussia\PlannedRussia\VIewWPF\images\Grave.PNG" />
+                                </Button>
+                            </UniformGrid>
+                        </Grid>
+                    </Grid>
                 </Grid>
                 
 

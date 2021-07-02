@@ -61,6 +61,9 @@ namespace VIewWPF
             db.Factories.Load();
             GridFactory.ItemsSource = db.Factories.Local.ToBindingList();
             db.Factories.Local.ToBindingList().ListChanged += MainWindow_ListChanged;
+
+            db.Revolutions.Load();
+            GridRevolution.ItemsSource = db.Revolutions.Local.ToBindingList();
         }
 
         private void MainWindow_ListChanged(object sender, ListChangedEventArgs e)
@@ -98,19 +101,38 @@ namespace VIewWPF
         }
         private void Delete_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (GridPeople.SelectedItems.Count > 0)
+            if (GridFactory.SelectedItem is Factories)
             {
-                for (int i = 0; i < GridPeople.SelectedItems.Count; i++)
+                if (GridFactory.SelectedItems.Count > 0)
                 {
-                    People people = GridPeople.SelectedItems[i] as People;
-                    if (people != null)
+                    for (int i = 0; i < GridFactory.SelectedItems.Count; i++)
                     {
-                        db.Peoples.Remove(people);
+                        Factories factory = GridFactory.SelectedItems[i] as Factories;
+                        if (factory != null)
+                        {
+                            db.Factories.Remove(factory);
+                        }
+                    }
+                }
+            }
+
+            if (GridPeople.SelectedItem is People)
+            {
+                if (GridPeople.SelectedItems.Count > 0)
+                {
+                    for (int i = 0; i < GridPeople.SelectedItems.Count; i++)
+                    {
+                        People people = GridPeople.SelectedItems[i] as People;
+                        if (people != null)
+                        {
+                            db.Peoples.Remove(people);
+                        }
                     }
                 }
             }
 
         }
+
 
         private void GridPeople_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
@@ -118,6 +140,58 @@ namespace VIewWPF
             SaveButton.Background = (Brush)bc.ConvertFrom("#7a4016");
             Coloring = "Orange";
             ThemeManager.Current.ChangeTheme(this, MainColor + Coloring);
+        }
+
+        private void Revolution_Click(object sender, RoutedEventArgs e)
+        {
+            int machines ;
+            int peoples ;
+            int res = 0;
+            foreach (var i in db.Factories)
+            {
+                if (i.Machines <= i.Peoples)
+                {
+                    machines = i.Machines;
+                    peoples = i.Peoples - machines;
+                    res += 2 * machines + peoples;
+                }
+                else
+                {
+                    machines = i.Peoples;
+                    res += 2 * machines;
+                }
+            }
+
+            if (res >= db.Peoples.Count())
+            {
+                db.Revolutions.Find(1).RevolutionPeopls = 0;
+                db.Revolutions.Find(1).Weapons = 0;
+                db.Revolutions.Find(1).Bomb = 0;
+
+            }
+            else
+            {
+                db.Revolutions.Find(1).RevolutionPeopls = db.Peoples.Count() - res;
+                db.Revolutions.Find(1).Weapons = (int)(0.2 * db.Revolutions.Find(1).RevolutionPeopls);
+                db.Revolutions.Find(1).Bomb = (int)(0.05 * db.Revolutions.Find(1).RevolutionPeopls);
+            }
+            db.SaveChanges();
+            
+
+        }
+
+        private void Military_Click(object sender, RoutedEventArgs e)
+        { 
+            Military.Text = $"Необходимо будет мобилизовать примерно {(int)(db.Revolutions.Find(1).RevolutionPeopls * 0.3)} человек для подавления.";
+        }
+
+        private void Attack_Click(object sender, RoutedEventArgs e)
+        {
+            Attack.Text = $"Приблизительные потери среди восставших до подавления: {(int)(db.Revolutions.Find(1).RevolutionPeopls * 0.7)}.";
+        }
+        private void Dead_Click(object sender, RoutedEventArgs e)
+        {
+            Dead.Text = $"При подавлении погибнет около {(int)(((int)(db.Revolutions.Find(1).RevolutionPeopls * 0.7))*0.4)} солдат.";
         }
     }
 }
